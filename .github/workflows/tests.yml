@@ -19,10 +19,11 @@ jobs:
         run: |
           pip install selenium pytest pytest-html
 
-      - name: Instalar Firefox y geckodriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y firefox
+      - name: Instalar Firefox
+        uses: browser-actions/setup-firefox@latest
+
+      - name: Instalar geckodriver
+        uses: browser-actions/setup-geckodriver@latest
 
       - name: Correr los tests
         run: |
