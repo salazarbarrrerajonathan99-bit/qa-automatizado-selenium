@@ -1,0 +1,29 @@
+name: Tests de Selenium
+
+on: [push]
+
+jobs:
+  correr-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: |
+          pip install selenium pytest pytest-html
+
+      - name: Instalar Firefox y geckodriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+
+      - name: Correr los tests
+        run: |
+          pytest test_login.py --html=reporte.html --self-contained-html
